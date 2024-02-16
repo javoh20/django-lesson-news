@@ -9,7 +9,7 @@ def news_list(request):
         "news_list" : news_list,
     }
 
-    return request(request, "list.html", context)
+    return render(request, "list.html", context)
 
 def news_detail(request, id):
     news = get_object_or_404(News, id = id, status = News.Status.Published)
@@ -18,3 +18,22 @@ def news_detail(request, id):
     }
 
     return render(request, "detail.html", context)
+
+def HomeView(request):
+    news = News.published.all()
+    categories = Category.objects.all()
+    context = {
+        'news' : news,
+        'categories' : categories,
+    }
+
+    return render(request, 'index.html', context)
+
+def NotFoundView(request):
+    return render(request,'404.html') 
+
+def ContactUsView(request):
+    context = {
+        # 'form' : form,
+    }
+    return render(request, 'contact.html', context)
