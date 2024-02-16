@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from .managers import *
 # Create your models here.
 
 class Category(models.Model):
@@ -28,6 +28,8 @@ class News(models.Model):
     created_time = models.DateTimeField(auto_now_add = True)
     updated_time = models.DateTimeField(auto_now = True)
     status = models.CharField(max_length = 2, choices = Status.choices, default = Status.Draft)
+
+    published = PublishedManager()
 
     class Meta:
         ordering = ['-published_time']
