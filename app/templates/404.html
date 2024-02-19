@@ -18,9 +18,10 @@
 
 </head>
 <body>
-{% comment %} <div id="preloader">
+
+<div id="preloader">
   <div id="status">&nbsp;</div>
-</div> {% endcomment %}
+</div>
 
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
@@ -187,13 +188,13 @@
     </div>
   </footer>
 </div>
-<script src="js/jquery.min.js"></script> 
-<script src="js/wow.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/slick.min.js"></script> 
-<script src="js/jquery.li-scroller.1.0.js"></script> 
-<script src="js/jquery.newsTicker.min.js"></script> 
-<script src="js/jquery.fancybox.pack.js"></script> 
-<script src="js/custom.js"></script>
+<script src="{% static "js/jquery.min.js" %}"></script> 
+<script src="{% static "js/wow.min.js" %}"></script> 
+<script src="{% static "js/bootstrap.min.js" %}"></script> 
+<script src="{% static "js/slick.min.js" %}"></script> 
+<script src="{% static "js/jquery.li-scroller.1.0.js" %}"></script> 
+<script src="{% static "js/jquery.newsTicker.min.js" %}"></script> 
+<script src="{% static "js/jquery.fancybox.pack.js" %}"></script> 
+<script src="{% static "js/custom.js" %}"></script>
 </body>
 </html>
