@@ -25,10 +25,36 @@ def news_detail(request, id):
 
 
 def HomeView(request):
-    news = News.published.all()
+    news_list = News.published.all().order_by('-published_time')[:5]
+
+    local_one = News.published.filter(category__name = "Local").order_by('-published_time')[:1]
+    local_news = News.published.filter(category__name = "Local").order_by('-published_time')[1:5]
+
+    foreign_one = News.published.filter(category__name = "Foreign").order_by('-published_time')[:1]
+    foreign_news = News.published.filter(category__name = "Foreign").order_by('-published_time')[1:5]
+
+    techno_one = News.published.filter(category__name = "Technology").order_by('-published_time')[:1]
+    techno_news = News.published.filter(category__name = "Technology").order_by('-published_time')[1:5]
+
+    sport_one = News.published.filter(category__name = "Sport").order_by('-published_time')[:1]
+    sport_news = News.published.filter(category__name = "Sport").order_by('-published_time')[1:5]
+
     categories = Category.objects.all()
     context = {
-        'news' : news,
+        'news_list' : news_list,
+
+        'local_news' : local_news,
+        'local_one' : local_one,
+
+        'foreign_one' : foreign_one,
+        'foreign_news' : foreign_news,
+
+        'techno_one' : techno_one,
+        'techno_news' : techno_news,
+    
+        'sport_one' : sport_one,
+        'sport_news' : sport_news,
+
         'categories' : categories,
     }
 
@@ -39,40 +65,14 @@ def NotFoundView(request):
     return render(request,'404.html') 
 
 
-# def ContactUsView(request):
-#     form = ContactForm(request.POST or None)
-#     if request.method == "POST" and form.is_valid():
-#         form.save()
-#         return HttpResponse("Success")
+def ContactUsView(request):
+    form = ContactForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return HttpResponse("Success")
 
-#     context = {
-#         'form' : form,
-#     }
+    context = {
+        'form' : form,
+    }
 
-#     return render(request, 'contact.html', context)
-
-
-class ContactUsView(TemplateView):
-    template_name = 'contact.html'
-    
-    def get(self, request, *args, **kwargs):
-        form = ContactForm()
-        
-        context = {
-            'form' : form,
-        }
-
-        return render(request, 'contact.html', context)
-    
-    def post(self,request):
-        form = ContactForm(request.POST)
-
-        if request.method == "POST" and form.is_valid():
-            form.save()
-            return HttpResponse("Success")
-        
-        context = {
-            'form' : form,
-        }
-
-        return render(request, 'contact.html', context)
+    return render(request, 'contact.html', context)
