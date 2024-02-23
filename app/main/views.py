@@ -26,38 +26,38 @@ def news_detail(request, id):
 
 def HomeView(request):
     news_list = News.published.all().order_by('-published_time')[:5]
-
-    local_one = News.published.filter(category__name = "Local").order_by('-published_time')[:1]
-    local_news = News.published.filter(category__name = "Local").order_by('-published_time')[1:5]
-
-    foreign_one = News.published.filter(category__name = "Foreign").order_by('-published_time')[:1]
-    foreign_news = News.published.filter(category__name = "Foreign").order_by('-published_time')[1:5]
-
-    techno_one = News.published.filter(category__name = "Technology").order_by('-published_time')[:1]
-    techno_news = News.published.filter(category__name = "Technology").order_by('-published_time')[1:5]
-
-    sport_one = News.published.filter(category__name = "Sport").order_by('-published_time')[:1]
-    sport_news = News.published.filter(category__name = "Sport").order_by('-published_time')[1:5]
-
+                                                                                                       
+    # local_one = News.published.filter(category__name = "Local").order_by('-published_time')[:1]
+    local_news = News.published.filter(category__name = "Local").order_by('-published_time')[:5]
+                                                                                                       
+    # foreign_one = News.published.filter(category__name = "Foreign").order_by('-published_time')[:1]
+    foreign_news = News.published.filter(category__name = "Foreign").order_by('-published_time')[:5]
+                                                                                                       
+    # techno_one = News.published.filter(category__name = "Technology").order_by('-published_time')[:1]
+    techno_news = News.published.filter(category__name = "Technology").order_by('-published_time')[:5]
+                                                                                                       
+    # sport_one = News.published.filter(category__name = "Sport").order_by('-published_time')[:1]
+    sport_news = News.published.filter(category__name = "Sport").order_by('-published_time')[:5]
+                                                                                                       
     categories = Category.objects.all()
     context = {
         'news_list' : news_list,
 
+        # 'local_one' : local_one,
         'local_news' : local_news,
-        'local_one' : local_one,
 
-        'foreign_one' : foreign_one,
+        # 'foreign_one' : foreign_one,
         'foreign_news' : foreign_news,
 
-        'techno_one' : techno_one,
+        # 'techno_one' : techno_one,
         'techno_news' : techno_news,
-    
-        'sport_one' : sport_one,
+
+        # 'sport_one' : sport_one,
         'sport_news' : sport_news,
 
         'categories' : categories,
     }
-
+                                                                                                       
     return render(request, 'index.html', context)
 
 
