@@ -78,13 +78,12 @@
           <li><a href="#">Laptops</a></li>
           <li><a href="#">Tablets</a></li>
           <li class="{% if active_nav == "contact" %}active{% endif %}"><a href="{% url "contact" %}">Contact Us</a></li>
-          <li class="{% if active_nav == "404" %}active{% endif %}"><a href="{% url "not_found" %}">404 Page</a></li>
+        <li class="{% if active_nav == "404" %}active{% endif %}"><a href="{% url "not_found" %}">404 Page</a></li>
         </ul>
       </div>
     </nav>
   </section>
 
-  
 
 
   <section id="newsSection">
@@ -97,16 +96,20 @@
             {% endfor %}
           </ul>
           <div class="social_area">
-            <ul class="social_nav">
-              <li class="facebook"><a href="#"></a></li>
-              <li class="twitter"><a href="#"></a></li>
-              <li class="flickr"><a href="#"></a></li>
-              <li class="pinterest"><a href="#"></a></li>
-              <li class="googleplus"><a href="#"></a></li>
-              <li class="vimeo"><a href="#"></a></li>
-              <li class="youtube"><a href="#"></a></li>
-              <li class="mail"><a href="#"></a></li>
-            </ul>
+            {% if social %}
+              
+              <ul class="social_nav">
+                <li class="facebook"><a target="_blank" href="{{ social.facebook }}"></a></li>
+                <li class="twitter"><a target="_blank" href="{{ social.twitter }}"></a></li>
+                <li class="flickr"><a target="_blank" href="{{ social.dots }}"></a></li>
+                <li class="pinterest"><a target="_blank" href="{{ social.pinterest }}"></a></li>
+                <li class="googleplus"><a target="_blank" href="{{ social.google_plus }}"></a></li>
+                <li class="vimeo"><a target="_blank" href="{{ social.v }}"></a></li>
+                <li class="youtube"><a target="_blank" href="{{ social.youtube }}"></a></li>
+                <li class="mail"><a target="_blank" href="{{ social.mail }}"></a></li>
+              </ul>
+
+            {% endif %}
           </div>
         </div>
       </div>

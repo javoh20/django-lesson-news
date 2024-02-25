@@ -67,7 +67,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'main.context_processor.latest_news',
-                'main.context_processor.AddBanner'
+                'main.context_processor.AddBanner',
+                'main.context_processor.Social'
             ],
         },
     },

@@ -63,3 +63,17 @@ class Add(models.Model):
     class Meta:
         verbose_name = 'Add Banner'
         verbose_name_plural = 'Add Banner'
+
+class SiteSocial(models.Model):
+    facebook = models.URLField(verbose_name="Facebook")
+    twitter = models.URLField(verbose_name="Twitter")
+    dots = models.URLField(verbose_name="dots")
+    pinterest = models.URLField(verbose_name="Pinterest")
+    google_plus = models.URLField(verbose_name="Google+")
+    v = models.URLField(verbose_name="V")
+    youtube = models.URLField(verbose_name="YouTube")
+    mail = models.URLField(verbose_name="Mail")
+
+    def __str__(self):
+        return "Social"
+    

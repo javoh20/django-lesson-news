@@ -18,3 +18,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Contact)
 admin.site.register(Add)
+admin.site.register(SiteSocial)

@@ -1,4 +1,4 @@
-from .models import News, Add
+from .models import *
 
 def latest_news(request):
     news = News.published.all().order_by("-published_time")[:15]
@@ -14,6 +14,15 @@ def AddBanner(request):
 
     context = {
         'add_banner' : add,
+    }
+
+    return context
+
+def Social(request):
+    social = SiteSocial.objects.last()
+
+    context = {
+        'social' : social,
     }
 
     return context
