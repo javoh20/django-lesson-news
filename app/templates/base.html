@@ -61,8 +61,11 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="{% url "home" %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          
+          <li class="{% if active_nav == "home" %}active{% endif %}"><a href="{% url "home" %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          
           <li><a href="#">Technology</a></li>
+          
           <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Android</a></li>
@@ -74,8 +77,8 @@
           </li>
           <li><a href="#">Laptops</a></li>
           <li><a href="#">Tablets</a></li>
-          <li><a href="{% url "contact" %}">Contact Us</a></li>
-          <li><a href="{% url "not_found" %}">404 Page</a></li>
+          <li class="{% if active_nav == "contact" %}active{% endif %}"><a href="{% url "contact" %}">Contact Us</a></li>
+          <li class="{% if active_nav == "404" %}active{% endif %}"><a href="{% url "not_found" %}">404 Page</a></li>
         </ul>
       </div>
     </nav>

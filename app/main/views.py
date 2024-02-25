@@ -37,6 +37,8 @@ def HomeView(request):
                                                                                                        
     categories = Category.objects.all()
     context = {
+        "active_nav" : "home",
+
         'news_list' : news_list,
 
         'local_news' : local_news,
@@ -54,7 +56,11 @@ def HomeView(request):
 
 
 def NotFoundView(request):
-    return render(request,'404.html') 
+    context = {
+        "active_nav" : "404",
+    }
+
+    return render(request, '404.html', context) 
 
 
 def ContactUsView(request):
@@ -65,6 +71,7 @@ def ContactUsView(request):
 
     context = {
         'form' : form,
+        "active_nav" : "contact",
     }
 
     return render(request, 'contact.html', context)
