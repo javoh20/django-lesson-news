@@ -50,3 +50,16 @@ class Contact(models.Model):
     class Meta:
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
+
+class Add(models.Model):
+    name = models.CharField(max_length = 200)
+    img = models.ImageField(upload_to = 'news/images')
+    url = models.URLField()
+
+
+    def __str__(self):    
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Add Banner'
+        verbose_name_plural = 'Add Banner'
