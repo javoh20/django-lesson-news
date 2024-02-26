@@ -10,7 +10,7 @@ def latest_news(request):
     return context
 
 def AddBanner(request):
-    add = Add.objects.last()
+    add = Addvertising.objects.last()
 
     context = {
         'add_banner' : add,
@@ -23,6 +23,15 @@ def Social(request):
 
     context = {
         'social' : social,
+    }
+
+    return context
+
+def AllCategories(request):
+    category = Category.objects.all()
+
+    context = {
+        'all_categories' : category,
     }
 
     return context

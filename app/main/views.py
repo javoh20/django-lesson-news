@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from .forms import *
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+
 
 # Create your views here.
 def news_list(request):
@@ -15,8 +16,8 @@ def news_list(request):
     return render(request, "list.html", context)
 
 
-def news_detail(request, id):
-    news = get_object_or_404(News, id = id, status = News.Status.Published)
+def news_detail(request, news):
+    news = get_object_or_404(News, slug = news, status = News.Status.Published)
     context = {
         "news": news
     }
@@ -75,3 +76,12 @@ def ContactUsView(request):
     }
 
     return render(request, 'contact.html', context)
+
+class LocalNewsView(ListView):
+    model = News
+    template_name = 'category/local.html'
+    context_object_name = 'local_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name = "Local")
+        return news

@@ -66,9 +66,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # context processors, контекстные процессоры (context_processor.py)
                 'main.context_processor.latest_news',
                 'main.context_processor.AddBanner',
-                'main.context_processor.Social'
+                'main.context_processor.Social',
+                'main.context_processor.AllCategories'
             ],
         },
     },

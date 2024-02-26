@@ -17,5 +17,5 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ['id']
 
 admin.site.register(Contact)
-admin.site.register(Add)
+admin.site.register(Addvertising)
 admin.site.register(SiteSocial)

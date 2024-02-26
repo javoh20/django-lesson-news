@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Detail</h1>
-    <h2>{{ news.title }}</h2>
-    <p>{{ news.disc }}</p>
-    <h2>{{ news.published_time }}</h2>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}{{ news.title }}{% endblock title %}
+
+{% block content %}
+    <div class="card text-center" style = "box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; width: 75%; height: 75%;">
+        <h4><b>{{ news.title }}</b></h4>
+        <img src="{{ news.img.url }}" alt="Avatar" style="width:100%">
+        <div class="container" style = "padding: 2px 16px;">
+        <p>{{ news.disc }}</p>
+        </div>
+    </div>
+{% endblock content %}

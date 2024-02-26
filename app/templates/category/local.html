@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Mahalliy Xabarlar{% endblock title %}
+
+{% block content %}
+    <h1 class="text-center">Mahalliy Xabarlar</h1>
+
+    {% for item in local_news %}
+
+    <div class="card" style = "box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; width: 25%; height: 25%;">
+        <img src="{{ item.img.url }}" alt="Avatar" style="width:100%">
+        <div class="container" style = "padding: 2px 16px;">
+          <h4><b>{{ item.title }}</b></h4>
+          <p>{{ item.disc }}</p>
+          <a href="{{ item.get_absolute_url }}" class = "btn btn-primary">Detail</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock content %}

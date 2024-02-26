@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from .managers import *
+from django.urls import reverse
+
 # Create your models here.
 
 class Category(models.Model):
@@ -38,6 +40,10 @@ class News(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("news_detail_page", args=[self.slug])
+    
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
@@ -51,7 +57,7 @@ class Contact(models.Model):
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
 
-class Add(models.Model):
+class Addvertising(models.Model):
     name = models.CharField(max_length = 200)
     img = models.ImageField(upload_to = 'news/images')
     url = models.URLField()

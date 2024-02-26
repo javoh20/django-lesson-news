@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/theme.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
 
+
 </head>
 <body>
 <div id="preloader">
@@ -64,21 +65,12 @@
           
           <li class="{% if active_nav == "home" %}active{% endif %}"><a href="{% url "home" %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           
-          <li><a href="#">Technology</a></li>
+          {% for item in all_categories %}
+            <li><a href="#">{{ item.name }}</a></li>
+          {% endfor %}
           
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Samsung</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
-              <li><a href="#">Sympony</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablets</a></li>
           <li class="{% if active_nav == "contact" %}active{% endif %}"><a href="{% url "contact" %}">Contact Us</a></li>
-        <li class="{% if active_nav == "404" %}active{% endif %}"><a href="{% url "not_found" %}">404 Page</a></li>
+          <li class="{% if active_nav == "404" %}active{% endif %}"><a href="{% url "not_found" %}">404 Page</a></li>
         </ul>
       </div>
     </nav>
@@ -129,16 +121,11 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInDown">
-            <h2>Tag</h2>
+            <h2>Kategoriyalar</h2>
             <ul class="tag_nav">
-              <li><a href="#">Games</a></li>
-              <li><a href="#">Sports</a></li>
-              <li><a href="#">Fashion</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
-              <li><a href="#">Technology</a></li>
-              <li><a href="#">Photo</a></li>
-              <li><a href="#">Slider</a></li>
+              {% for item in all_categories %}
+                <li><a href="#">{{ item.name }}</a></li>
+              {% endfor %}
             </ul>
           </div>
         </div>
