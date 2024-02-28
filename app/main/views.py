@@ -85,3 +85,39 @@ class LocalNewsView(ListView):
     def get_queryset(self):
         news = self.model.published.all().filter(category__name = "Local")
         return news
+    
+class ForeignNewsView(ListView):
+    model = News
+    template_name = 'category/foreign.html'
+    context_object_name = 'foreign_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name = "Foreign")
+        return news
+    
+class ScienceNewsView(ListView):
+    model = News
+    template_name = 'category/science.html'
+    context_object_name = 'science_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name = "Science")
+        return news
+    
+class SportNewsView(ListView):
+    model = News
+    template_name = 'category/sport.html'
+    context_object_name = 'sport_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name = "Sport")
+        return news
+    
+class TechnoNewsView(ListView):
+    model = News
+    template_name = 'category/technology.html'
+    context_object_name = 'techno_news'
+
+    def get_queryset(self):
+        news = self.model.published.all().filter(category__name = "Technology")
+        return news

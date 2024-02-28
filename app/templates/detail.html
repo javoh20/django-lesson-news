@@ -1,15 +1,32 @@
 {% extends "base.html" %}
-{% load static %}
 
-
-{% block title %}{{ news.title }}{% endblock title %}
+{% block title %}
+{{ news.title }} - Новости
+{% endblock title %}
 
 {% block content %}
-    <div class="card text-center" style = "box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; width: 75%; height: 75%;">
-        <h4><b>{{ news.title }}</b></h4>
-        <img src="{{ news.img.url }}" alt="Avatar" style="width:100%">
-        <div class="container" style = "padding: 2px 16px;">
-        <p>{{ news.disc }}</p>
+<div class="row">
+  <div class="col-lg-8 col-md-8">
+    <div class="latest_post">
+      <div class="single_post_content">
+        <h2><span>{{ news.title }}</span></h2>
+        <div class="single_post_content_left">
+          <ul class="business_catgnav  wow fadeInDown">
+            <li>
+              <figure class="bsbig_fig">
+                <a href="#" class="featured_img"> 
+                  <img alt="{{ news.title }}" src="{{ news.img.url }}" style="max-width: 100%; height: auto;"> <!-- Стиль для улучшенного отображения изображения -->
+                  <span class="overlay"></span> 
+                </a>
+                <figcaption> <a href="#">{{ news.category }}</a> </figcaption>
+                <p>{{ news.published_time|date:"d.m.Y" }}</p> <!-- Исправлено на published_time -->
+              </figure>
+            </li>
+          </ul>
+          <p>{{ news.disc }}</p> <!-- Описание новости -->
         </div>
+      </div>
     </div>
+  </div>
+</div>
 {% endblock content %}

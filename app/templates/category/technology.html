@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Technologiya{% endblock title %}
+
+{% block content %}
+    <h1 class="text-center">Technologiya</h1>
+
+    <style>
+        /* Устанавливаем фиксированную высоту для изображений в карточках */
+        .card-img-top {
+            height: 200px; /* Выберите желаемую высоту */
+            object-fit: cover; /* Обрезаем изображение до размеров блока */
+        }
+    </style>
+
+    <div class="row">
+        {% for item in techno_news %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- Использование сетки Bootstrap для карточек -->
+            <div class="card h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;">
+                <img src="{{ item.img.url }}" class="card-img-top" alt="News Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.disc }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

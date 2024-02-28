@@ -7,5 +7,9 @@ urlpatterns = [
     path('contact/', ContactUsView, name = 'contact'),
     path('all/', news_list, name = "all_news_list"),
     path('news/<slug:news>', news_detail, name = "news_detail_page"),
-    path('local/', LocalNewsView.as_view(), name = "local_news"),
+    path('local/', LocalNewsView.as_view(), name = "Local"),
+    path('foreign/', ForeignNewsView.as_view(), name = "Foreign"),
+    path('science/', ScienceNewsView.as_view(), name = "Science"),
+    path('sport/', SportNewsView.as_view(), name = "Sport"),
+    path('techno/', TechnoNewsView.as_view(), name = "Technology"),
 ]
