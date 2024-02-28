@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete{% endblock title %}
+
+{% block content %}
+
+
+<h2 class="text-center">Удаление текущей новости</h2>
+
+<form action="" method="post">{% csrf_token %}
+    <p>{{ news.title }}</p>
+    <h2>Вы уверены что хотите удалить?</h2>
+    <button type="submit" class = "btn btn-danger"> Delete </button>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Update{% endblock title %}
+
+{% block content %}
+
+
+<h2 class="text-center">Редактирование текущей новости</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class = "btn btn-info"> Done </button>
+</form>
+
+
+{% endblock content %}

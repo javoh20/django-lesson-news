@@ -26,7 +26,7 @@ class News(models.Model):
     disc = models.TextField()
     img = models.ImageField(upload_to='news/images')
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
-    published_time = models.DateTimeField(timezone.now)
+    published_time = models.DateTimeField(default = timezone.now)
     created_time = models.DateTimeField(auto_now_add = True)
     updated_time = models.DateTimeField(auto_now = True)
     status = models.CharField(max_length = 2, choices = Status.choices, default = Status.Draft)

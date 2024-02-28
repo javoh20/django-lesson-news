@@ -126,7 +126,7 @@
             <h2>Kategoriyalar</h2>
             <ul class="tag_nav">
               {% for item in all_categories %}
-                <li><a href="#">{{ item.name }}</a></li>
+                <li><a href="{% url item.name %}">{{ item.name }}</a></li>
               {% endfor %}
             </ul>
           </div>
