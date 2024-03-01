@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <h2>Your profile</h2>
+    <form action="">
+        <label>Username: </label><input type="text" value="{{ user.username }}" readonly> <br>
+        <label>Email: </label><input type="text" value="{{ user.emaeil }}" readonly> <br>
+        <label>Name: </label><input type="text" value="{{ user.first_name }}" readonly> <br>
+        <label>Lastname: </label><input type="text" value="{{ user.last_name }}" readonly> <br>
+    </form>
+{% endblock content %}

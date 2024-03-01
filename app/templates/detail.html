@@ -24,7 +24,12 @@
             </li>
           </ul>
           <p>{{ news.disc }}</p>
+
+          <a href="{% url "news_delete" news.slug %}" class = "btn btn-danger">Delete</a>
+          <a href="{% url "news_edit" news.slug %}" class = "btn btn-info">Edit</a>
         </div>
+
+
       </div>
     </div>
   </div>
