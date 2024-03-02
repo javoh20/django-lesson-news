@@ -39,9 +39,9 @@
           </div>
           <div class="header_top_right">
             {% if request.user.is_authenticated %}
-
+              <p><a class="text-info" href="{% url "profile" %}">Profile</a></p>
             {% else %}
-            
+              <p><a class="text-warning" href="{% url "login" %}">Login</a></p>
             {% endif %}
             <p>{% now "jS F Y H:i" %}</p>
           </div>
