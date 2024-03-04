@@ -5,6 +5,10 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
+    <h2>Welcome {{ user.username }}</h2>
+
+    <a href = "{% url "logout" %}" class = "btn btn-danger">Logout</a>
+    
     <h2>Your profile</h2>
     <form action="">
         <label>Username: </label><input type="text" value="{{ user.username }}" readonly> <br>
@@ -12,4 +16,9 @@
         <label>Name: </label><input type="text" value="{{ user.first_name }}" readonly> <br>
         <label>Lastname: </label><input type="text" value="{{ user.last_name }}" readonly> <br>
     </form>
+
+    <br>
+
+    <a href = "{% url "password_change" %}" class = "btn btn-success">Change password</a>
+
 {% endblock content %}
