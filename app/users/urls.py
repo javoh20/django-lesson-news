@@ -5,9 +5,14 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
+
     path('logout/', LogoutView.as_view(), name="logout"),
     
+    path('register', UserReg.as_view(), name="register"),
+
     path('profile/', UserProfile, name="profile"),
+
+    path('profile-edit/', EditUser, name="user_edit"),
 
     path('password-change/', PasswordChangeView.as_view(), name="password_change"),
     path('password-change-done/', PasswordChangeDoneView.as_view(), name="password_change_done"),

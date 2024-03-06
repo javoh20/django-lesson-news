@@ -11,8 +11,8 @@
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
         <button type="submit" class="btn btn-info">Login</button>
     </form>
-
+    <a href="{% url "register" %}" class = "btn btn-success">Sign Up</a>
+    <a href="{% url "password_reset" %}" class="btn btn-warning">Reset password</a>
 {% endblock content %}

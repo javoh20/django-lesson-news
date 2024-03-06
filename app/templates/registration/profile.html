@@ -7,18 +7,21 @@
 {% block content %}
     <h2>Welcome {{ user.username }}</h2>
 
-    <a href = "{% url "logout" %}" class = "btn btn-danger">Logout</a>
-    
     <h2>Your profile</h2>
     <form action="">
+        <img src="{{ profile_info.photo.url }}" width="20%" height="20%" alt="">
+        <p>{{ profile_info.date_of_birth }}</p>
         <label>Username: </label><input type="text" value="{{ user.username }}" readonly> <br>
-        <label>Email: </label><input type="text" value="{{ user.emaeil }}" readonly> <br>
+        <label>Email: </label><input type="text" value="{{ user.email }}" readonly> <br>
         <label>Name: </label><input type="text" value="{{ user.first_name }}" readonly> <br>
         <label>Lastname: </label><input type="text" value="{{ user.last_name }}" readonly> <br>
     </form>
 
     <br>
 
+    <a href="{% url "user_edit" %}" class = "btn btn-info">Edit</a>
     <a href = "{% url "password_change" %}" class = "btn btn-success">Change password</a>
+    <a href = "{% url "logout" %}" class = "btn btn-danger">Logout</a>
+
 
 {% endblock content %}
