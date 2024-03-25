@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from django.views.generic import DeleteView, TemplateView, ListView, UpdateView, DeleteView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from app.permission import OnlyLoggedSuperUser
 
 # Create your views here.
 def news_list(request):
@@ -17,9 +19,15 @@ def news_list(request):
 
 
 def news_detail(request, news):
+    if request.user.is_superuser:
+        is_admin = True
+    else:
+        is_admin = False
+    
     news = get_object_or_404(News, slug = news, status = News.Status.Published)
     context = {
-        "news": news
+        "news": news,
+        "is_admin": is_admin,
     }
 
     return render(request, "detail.html", context)
@@ -133,7 +141,7 @@ class NewsDeleteView(DeleteView):
     template_name = 'crud/news_delete.html'
     success_url = reverse_lazy('home')
 
-class NewsCreateView(CreateView):
+class NewsCreateView(OnlyLoggedSuperUser, CreateView):
     model = News
     fields = ('title', 'slug', 'disc', 'status', 'category', 'img')
     template_name = 'crud/news_create.html'

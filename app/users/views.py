@@ -7,6 +7,7 @@ from django.contrib.auth import  authenticate, login
 from django.views.generic import CreateView
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
@@ -19,33 +20,12 @@ def UserProfile(request):
     return render(request, 'registration/profile.html', context)
 
 
-# def UserReg(request):
-#     if request.method == "POST":
-#         user_form = SignupForm(request.POST)
-#         if user_form.is_valid():
-#             new_user = user_form.save(commit=False)
-#             new_user.set_password(
-#                 user_form.cleaned_data['password_1']
-#             )
-#             new_user.save()
-#             context = {
-#                 'user_form': user_form,
-#             }
-#             return render(request, 'account/register_done.html', context)
-        
-#     else:
-#         user_form = SignupForm()
-#         context = {
-#             'user_form': user_form,
-#         }
-#         return render(request, 'account/register.html', context)
-
 class UserReg(CreateView):
     form_class = UserCreationForm
     template_name = 'account/register.html'
     success_url = reverse_lazy('login')
 
-
+@login_required
 def UserProfile(request):
     user = request.user
     profile_info = Profile.objects.get(user=user)
@@ -85,3 +65,17 @@ def EditUser(request):
         }
 
         return render(request, 'user_edit.html', context)
+    
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def AdminPage(request):
+    admin_users = User.objects.filter(is_superuser=True)
+    users = User.objects.filter(is_superuser=False)
+
+    context = {
+        'admins': admin_users,
+        'users': users,
+    }
+
+    return render(request, 'admin_page.html', context)

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Админка{% endblock title %}
+
+
+
+{% block content %}
+
+<h1>Админка</h1>
+<h2>Admins</h2>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Email</th>
+    </tr>
+    {% for user in admins %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h2>Users</h2>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Email</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h4><a class="btn btn-info" href="{% url "news_create" %}">Create post</a></h4>
+
+{% endblock content%}
