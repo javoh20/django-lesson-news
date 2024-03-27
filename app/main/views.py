@@ -25,9 +25,26 @@ def news_detail(request, news):
         is_admin = False
     
     news = get_object_or_404(News, slug = news, status = News.Status.Published)
+    comments = news.comments.filter(active = True)
+    new_comment = None
+
+    if request.method == 'POST':
+        comment_form = CommentForm(data = request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit = False)
+            new_comment.news = news
+            new_comment.user = request.user
+            new_comment.save()
+            comment_form = CommentForm()
+    else:  
+        comment_form = CommentForm()
+
     context = {
         "news": news,
         "is_admin": is_admin,
+        "comments": comments,
+        "new_comment": new_comment,
+        "comment_form": comment_form,
     }
 
     return render(request, "detail.html", context)
@@ -130,13 +147,13 @@ class TechnoNewsView(ListView):
         news = self.model.published.all().filter(category__name = "Technology")
         return news
     
-class NewsEditView(UpdateView):
+class NewsEditView(OnlyLoggedSuperUser, UpdateView):
     model = News
     fields = ('title', 'slug', 'disc', 'status', 'category', 'img')
     template_name = 'crud/news_edit.html'
 
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
     model = News
     template_name = 'crud/news_delete.html'
     success_url = reverse_lazy('home')
@@ -145,3 +162,15 @@ class NewsCreateView(OnlyLoggedSuperUser, CreateView):
     model = News
     fields = ('title', 'slug', 'disc', 'status', 'category', 'img')
     template_name = 'crud/news_create.html'
+
+
+
+class CommentEditView(UpdateView):
+    model = Comment
+    fields = ('body')
+    template_name = 'crud/news_edit.html'
+
+class CommentDeleteView(DeleteView):
+    model = News
+    template_name = 'crud/news_delete.html'
+    success_url = reverse_lazy('/')

@@ -16,7 +16,7 @@
               <figure class="bsbig_fig">
                 <a href="#" class="featured_img"> 
                   <img alt="{{ news.title }}" src="{{ news.img.url }}" style="max-width: 100%; height: auto;"> <!-- Стиль для улучшенного отображения изображения -->
-                  <span class="overlay"></span> 
+                  <span class="overlay"></span>
                 </a>
                 <figcaption> <a href="#">{{ news.category }}</a> </figcaption>
                 <p>{{ news.published_time|date:"d.m.Y" }}</p>
@@ -31,10 +31,43 @@
           {% endif %}
 
         </div>
-
-
       </div>
     </div>
   </div>
 </div>
+
+
+{% for comment in comments %}
+  {% if comment.user == request.user %}
+    <div class="comments" style = "padding: 20px">
+      <p class="font-weight-bold">
+        <b>{{ comment.user }}</b>
+        <span class="text-muted">{{ comment.created_time }}</span>
+      </p>
+      <p>{{ comment.body }}</p>
+      <a class="btn btn-danger">Delete comment</a>
+      <a class="btn btn-info">Edit comment</a>
+
+    </div>
+  {% else %}
+    <div class="comments" style = "padding: 20px">
+      <p class="font-weight-bold">
+        <b>{{ comment.user }}</b>
+        <span class="text-muted">{{ comment.created_time }}</span>
+      </p>
+      <p>{{ comment.body }}</p>
+    </div>
+  {% endif %}
+
+{% endfor %}
+
+<div>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button class="btn btn-info" type="submit">Добавить комментарий</button>
+  </form>
+</div>
+
+
 {% endblock content %}

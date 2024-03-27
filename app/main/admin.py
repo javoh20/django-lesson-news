@@ -19,3 +19,16 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Contact)
 admin.site.register(Addvertising)
 admin.site.register(SiteSocial)
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['user', 'body', 'created_time', 'active']
+    list_filter = ['active', 'created_time']
+    search_fields = ['user', 'body']
+    actions = ['disable_comment', "active_comment"]
+
+    def disable_comment(self, queryset):
+        queryset.update(active = False)
+
+    def active_comment(self, queryset):
+        queryset.update(active = True)
